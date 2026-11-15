@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f5f5f4"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Giornata analogica"><title>La giornata analogica · 1.1</title>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f3f0e8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Giornata analogica"><title>La giornata analogica · 1.2</title>
 <style>
 :root{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;color:#191919;background:#f5f5f4}*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button{cursor:pointer}main{max-width:560px;margin:auto;padding:25px 17px 115px}header h1{font-family:Georgia,serif;font-size:29px;letter-spacing:-.9px;margin:0 0 8px}header p,.muted{color:#666;font-size:13px}.datebar{display:flex;align-items:center;justify-content:space-between;margin:20px 0 15px;gap:10px}.datebar input{border:1px solid #d2d2d2;background:white;border-radius:10px;padding:9px;font-size:15px;max-width:170px}h2{font-family:Georgia,serif;font-size:21px;margin:25px 0 12px}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:9px}.metric{border:1px solid #d5d5d5;background:#fff;border-radius:12px;padding:14px 12px;min-height:100px}.metric.big{grid-column:span 2}.metric .name{font-size:13px}.metric .value{font-size:24px;font-weight:750;margin-top:6px;letter-spacing:-.6px}.metric .sub{font-size:12px;color:#626262;margin-top:5px}.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.actions button,.outline{border:1px solid #cfcfcf;background:white;border-radius:10px;min-height:48px;padding:10px 5px;font-weight:600;font-size:13px;color:#252525}.actions button:active,.outline:active{background:#e8e8e8}.panel{border:1px solid #d8d8d8;background:#fff;border-radius:13px;padding:14px;margin-top:12px}.panel h3{margin:0 0 12px;font-size:15px}label{font-size:13px;color:#454545;display:block;margin-bottom:5px}input[type=number],input[type=time],select{width:100%;padding:11px;border-radius:9px;border:1px solid #ccc;background:#fff;color:#111;min-width:0}input[type=number]{appearance:textfield}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.formgrid>div{min-width:0}.primary{background:#222;color:white;border:0;border-radius:9px;padding:12px 16px;font-weight:700}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.row.between{justify-content:space-between}.hint{font-size:12px;color:#686868;line-height:1.5}.timeline{position:relative;background:#e4e4e4;height:20px;border-radius:5px;overflow:hidden;margin:15px 0 10px}.seg{position:absolute;top:0;height:100%;min-width:2px}.ticks{display:flex;justify-content:space-between;color:#666;font-size:11px}.legend{display:flex;gap:9px;flex-wrap:wrap;font-size:11px;margin-top:11px;color:#555}.swatch{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:4px}.event{font-size:13px;border-top:1px solid #eee;padding:10px 0;display:flex;justify-content:space-between;gap:8px;align-items:center}.event small{color:#777}.event button{border:0;background:none;text-decoration:underline;color:#555;font-size:12px}.bottom{position:fixed;bottom:0;left:0;right:0;background:#fafafaee;backdrop-filter:blur(15px);border-top:1px solid #ddd;padding:10px 15px max(12px,env(safe-area-inset-bottom));display:flex;justify-content:center;gap:10px}.bottom button{width:min(240px,48%);padding:11px 8px;border-radius:10px;border:0;background:transparent;font-weight:700}.bottom button.active{background:#ddd}section[hidden]{display:none!important}.weekrow{border-bottom:1px solid #e4e4e4;padding:12px 0;display:flex;justify-content:space-between}.note{border-left:3px solid #555;padding-left:12px;font-size:14px;color:#444}.danger{color:#a22!important}.status{font-size:12px;font-weight:650;color:#333}.foot{margin-top:30px}dialog{border:1px solid #ddd;border-radius:14px;padding:20px;width:calc(100% - 24px);max-width:440px;box-shadow:0 15px 80px #0004}dialog::backdrop{background:#0006}dialog h2{margin:0 0 15px}.empty{color:#777;font-size:13px;padding:15px 0}.weekstats{display:grid;grid-template-columns:1fr 1fr;gap:8px}.weekstats .metric{min-height:85px}.weekstats .value{font-size:20px}.purchase-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.counter{display:flex;align-items:center;gap:15px}.counter button{width:44px;height:44px;border:1px solid #c6c6c6;border-radius:11px;background:#f5f5f5;font-size:24px}.counter output{min-width:35px;text-align:center;font-weight:750;font-size:27px}.count-note{font-size:12px;color:#656565;margin:9px 0 0}.metric .value.small{font-size:20px}@media(max-width:350px){main{padding-left:10px;padding-right:10px}.actions{grid-template-columns:repeat(2,1fr)}}
 
@@ -94,6 +94,68 @@
 .month-switch button{border:1px solid #ccc;border-radius:9px;background:white;padding:9px 14px;font-size:20px}
 .book-row{display:flex;justify-content:space-between;align-items:center;gap:10px}
 @media(max-width:370px){.month-switch button{padding:6px 10px}}
+
+/* 1.2 — Restyling esclusivamente visivo: Taccuino analogico */
+:root{
+  --paper:#f3f0e8;--card:#fcfaf5;--ink:#292824;--muted-ink:#716d65;
+  --line:#dcd6cb;--pale:#eeeae1;--strong:#37352f;
+  color:var(--ink);background:var(--paper);
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+}
+body{background:var(--paper);color:var(--ink)}
+main{max-width:560px;padding:29px 18px 125px}
+header{padding:3px 1px 15px;border-bottom:1px solid var(--line)}
+header h1{font-family:Georgia,"Times New Roman",serif;font-size:30px;letter-spacing:-.8px;font-weight:600;color:var(--ink);line-height:1.17}
+header p{margin:7px 0 0;line-height:1.5;color:var(--muted-ink);font-size:12px}
+h2{font-size:20px;font-weight:600;letter-spacing:-.45px;color:var(--ink);margin:30px 0 13px}
+.panel,.metric,.timer-details{background:var(--card);border:1px solid var(--line);border-radius:11px;box-shadow:none}
+.panel{padding:17px;margin-top:14px}
+.panel h3{font-size:15px;color:var(--ink);letter-spacing:.05px;font-weight:700}
+.metric{padding:16px 13px;min-height:101px}
+.metric .name{color:var(--muted-ink);font-size:12px}
+.metric .value{color:var(--ink);font-size:24px;letter-spacing:-.45px;font-weight:700;font-variant-numeric:tabular-nums}
+.metric .sub{color:var(--muted-ink);line-height:1.4}
+.metrics,.weekstats{gap:10px}
+label{color:#58554f;font-size:12px;font-weight:550}
+.hint,.muted,.count-note,.section-intro,.wake-caption,.wake-summary,.home-entry-note{color:var(--muted-ink)}
+.datebar{margin:20px 0 17px}.datebar strong{font-family:Georgia,serif;font-size:17px;font-weight:600}
+input[type=number],input[type=time],input[type=date],select{background:#fffdf9;color:var(--ink);border:1px solid #cec8be;border-radius:7px;min-height:44px}
+input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #8d8070;outline-offset:2px}
+.primary,.quick-add{background:var(--strong);color:#fffdf7;border:1px solid var(--strong);border-radius:8px;box-shadow:none}
+.quick-add{font-size:16px;letter-spacing:.05px}
+.outline,.secondary-actions button,.actions button,.xp-toggle,.month-switch button,.calendar-head button,.counter button{background:#fffdf9;border:1px solid #ccc5ba;color:var(--ink);border-radius:8px;box-shadow:none}
+.outline:active,.secondary-actions button:active,.actions button:active{background:var(--pale)}
+.timer-details{padding:14px}.timer-details summary{color:var(--ink)}
+.calendar-day{background:#f8f5ee;color:var(--ink);border-radius:7px}
+.calendar-day.selected{background:#e8e1d5;border-color:#4d4841}
+.calendar-day.today:not(.selected){border-color:#aaa196}
+.calendar-head strong{color:var(--ink);font-weight:600}
+.calendar-day.has-data::after{background:#4b4741}
+.missing-note,.auto-time-box,.amazon-flow{background:#f6f2eb;border:1px solid var(--line);color:#555149;border-radius:9px}
+.structure-stats>div{background:#f1ece3;border:1px solid #e7dfd3;border-radius:8px}
+.structure-stats span,.structure-label span{color:var(--muted-ink)}
+.structure-stats strong{font-family:Georgia,serif;font-size:20px;font-weight:600}
+.structure-track,.duration-track{background:#e8e2d8}
+.structure-segment{background:#827c73}
+.storage-track{background:#e7e1d7;border-radius:6px;height:24px}
+.storage-segment{border-right:1px solid rgba(255,255,255,.5)}
+.home-breakdown{gap:11px}.home-entry{padding:2px 0;color:var(--ink)}
+.home-entry strong{font-weight:650}.home-dot{border-radius:2px}
+.duration-chart{border-color:var(--line)}.duration-fill{border-radius:5px}
+.event,.xp-row,.weekrow{border-color:#e6dfd4}
+.event button{color:#5e5850}
+.snooze-indicator{border-radius:7px}
+/* I colori funzionali verde/rosso e le barre delle attività non vengono modificati. */
+.xp-toggle{font-family:Georgia,serif;font-size:17px;font-weight:600;padding:16px 15px;background:var(--card)}
+.xp-value{font-family:Georgia,serif;font-size:36px;font-weight:600;letter-spacing:-.6px}
+.month-notes p{border-left-color:#928779;color:var(--ink)}
+.bottom{background:rgba(247,243,235,.96);border-top:1px solid #d7d0c4;backdrop-filter:blur(15px);gap:7px}
+.bottom button{color:#5b554e;border-radius:7px;font-size:13px}
+.bottom button.active{background:#e7e0d5;color:#28251f}
+dialog{background:#fbf8f1;color:var(--ink);border:1px solid var(--line);border-radius:12px}
+dialog::backdrop{background:rgba(34,29,23,.45)}
+@media(max-width:370px){main{padding-left:13px;padding-right:13px}.panel{padding:14px}header h1{font-size:28px}}
+
 </style></head>
 <body><main>
 <header><h1>La giornata analogica</h1><p>Un'occhiata al tempo. Poi torna alla vita reale.</p></header>
