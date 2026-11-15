@@ -1,39 +1,634 @@
+
 <!doctype html>
-<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f5f5f4"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Giornata analogica"><title>La giornata analogica · 0.2</title>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f5f5f4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Giornata analogica">
+<title>La giornata analogica · 0.3</title>
 <style>
-:root{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;color:#191919;background:#f5f5f4}*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button{cursor:pointer}main{max-width:560px;margin:auto;padding:25px 17px 115px}header h1{font-family:Georgia,serif;font-size:29px;letter-spacing:-.9px;margin:0 0 8px}header p,.muted{color:#666;font-size:13px}.datebar{display:flex;align-items:center;justify-content:space-between;margin:20px 0 15px;gap:10px}.datebar input{border:1px solid #d2d2d2;background:white;border-radius:10px;padding:9px;font-size:15px;max-width:170px}h2{font-family:Georgia,serif;font-size:21px;margin:25px 0 12px}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:9px}.metric{border:1px solid #d5d5d5;background:#fff;border-radius:12px;padding:14px 12px;min-height:100px}.metric.big{grid-column:span 2}.metric .name{font-size:13px}.metric .value{font-size:24px;font-weight:750;margin-top:6px;letter-spacing:-.6px}.metric .sub{font-size:12px;color:#626262;margin-top:5px}.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.actions button,.outline{border:1px solid #cfcfcf;background:white;border-radius:10px;min-height:48px;padding:10px 5px;font-weight:600;font-size:13px;color:#252525}.actions button:active,.outline:active{background:#e8e8e8}.panel{border:1px solid #d8d8d8;background:#fff;border-radius:13px;padding:14px;margin-top:12px}.panel h3{margin:0 0 12px;font-size:15px}label{font-size:13px;color:#454545;display:block;margin-bottom:5px}input[type=number],input[type=time],select{width:100%;padding:11px;border-radius:9px;border:1px solid #ccc;background:#fff;color:#111;min-width:0}input[type=number]{appearance:textfield}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.formgrid>div{min-width:0}.primary{background:#222;color:white;border:0;border-radius:9px;padding:12px 16px;font-weight:700}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.row.between{justify-content:space-between}.hint{font-size:12px;color:#686868;line-height:1.5}.timeline{position:relative;background:#e4e4e4;height:20px;border-radius:5px;overflow:hidden;margin:15px 0 10px}.seg{position:absolute;top:0;height:100%;min-width:2px}.ticks{display:flex;justify-content:space-between;color:#666;font-size:11px}.legend{display:flex;gap:9px;flex-wrap:wrap;font-size:11px;margin-top:11px;color:#555}.swatch{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:4px}.event{font-size:13px;border-top:1px solid #eee;padding:10px 0;display:flex;justify-content:space-between;gap:8px;align-items:center}.event small{color:#777}.event button{border:0;background:none;text-decoration:underline;color:#555;font-size:12px}.bottom{position:fixed;bottom:0;left:0;right:0;background:#fafafaee;backdrop-filter:blur(15px);border-top:1px solid #ddd;padding:10px 15px max(12px,env(safe-area-inset-bottom));display:flex;justify-content:center;gap:10px}.bottom button{width:min(240px,48%);padding:11px 8px;border-radius:10px;border:0;background:transparent;font-weight:700}.bottom button.active{background:#ddd}section[hidden]{display:none!important}.weekrow{border-bottom:1px solid #e4e4e4;padding:12px 0;display:flex;justify-content:space-between}.note{border-left:3px solid #555;padding-left:12px;font-size:14px;color:#444}.danger{color:#a22!important}.status{font-size:12px;font-weight:650;color:#333}.foot{margin-top:30px}dialog{border:1px solid #ddd;border-radius:14px;padding:20px;width:calc(100% - 24px);max-width:440px;box-shadow:0 15px 80px #0004}dialog::backdrop{background:#0006}dialog h2{margin:0 0 15px}.empty{color:#777;font-size:13px;padding:15px 0}.weekstats{display:grid;grid-template-columns:1fr 1fr;gap:8px}.weekstats .metric{min-height:85px}.weekstats .value{font-size:20px}.purchase-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.counter{display:flex;align-items:center;gap:15px}.counter button{width:44px;height:44px;border:1px solid #c6c6c6;border-radius:11px;background:#f5f5f5;font-size:24px}.counter output{min-width:35px;text-align:center;font-weight:750;font-size:27px}.count-note{font-size:12px;color:#656565;margin:9px 0 0}.metric .value.small{font-size:20px}@media(max-width:350px){main{padding-left:10px;padding-right:10px}.actions{grid-template-columns:repeat(2,1fr)}}
-</style></head>
-<body><main>
-<header><h1>La giornata analogica</h1><p>Un'occhiata al tempo. Poi torna alla vita reale.</p></header>
-<section id="todayTab"><div class="datebar"><strong>Oggi / Diario</strong><input type="date" id="day" aria-label="Giorno da visualizzare"></div>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;color:#191919;background:#f5f5f4}
+*{box-sizing:border-box}
+body{margin:0}
+button,input,select{font:inherit}
+button{cursor:pointer}
+main{max-width:560px;margin:auto;padding:25px 17px 115px}
+h1,h2{font-family:Georgia,serif}
+h1{font-size:29px;letter-spacing:-.8px;margin:0 0 8px}
+h2{font-size:21px;margin:25px 0 12px}
+header p,.muted{color:#666;font-size:13px}
+.datebar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:20px 0 15px}
+.datebar input{max-width:170px;background:white;border:1px solid #ccc;border-radius:10px;padding:9px}
+.metrics,.weekstats{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.metric{border:1px solid #d5d5d5;background:white;border-radius:12px;padding:14px 12px;min-height:95px}
+.metric.big{grid-column:span 2}
+.metric .name{font-size:13px}
+.metric .value{font-size:24px;font-weight:750;margin-top:6px}
+.metric .sub{font-size:12px;color:#666;margin-top:5px}
+.panel{background:white;border:1px solid #ddd;border-radius:13px;padding:14px;margin-top:12px}
+.panel h3{font-size:15px;margin:0 0 12px}
+.hint,.section-intro{font-size:12px;color:#666;line-height:1.5}
+.section-intro{margin:-4px 0 13px;font-size:13px}
+.primary,.quick-add{background:#222;color:white;border:0;border-radius:10px;padding:13px;font-weight:700}
+.quick-add{display:block;width:100%;font-size:17px;min-height:56px}
+.outline,.secondary-actions button,.actions button{border:1px solid #ccc;background:white;color:#222;border-radius:10px;padding:11px;font-weight:600}
+.row{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.between{justify-content:space-between}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:block;font-size:13px;color:#444;margin-bottom:6px}
+input[type=number],input[type=time],select{width:100%;min-width:0;padding:11px;border:1px solid #ccc;border-radius:9px;background:white;color:#111}
+.secondary-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:11px 0}
+.secondary-actions button{min-height:48px}
+.timer-details{border:1px solid #ddd;border-radius:12px;background:white;padding:13px;margin-top:10px}
+.timer-details summary{font-weight:650;cursor:pointer;font-size:14px}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.actions button{min-height:47px;font-size:12px}
+.timeline{position:relative;background:#e4e4e4;height:20px;border-radius:5px;overflow:hidden;margin:15px 0 10px}
+.seg{position:absolute;top:0;height:100%;min-width:2px}
+.ticks{display:flex;justify-content:space-between;color:#666;font-size:11px}
+.legend{display:flex;gap:9px;flex-wrap:wrap;font-size:11px;margin-top:12px;color:#555}
+.swatch{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:4px}
+.event{border-top:1px solid #eee;padding:11px 0;display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px}
+.event small{color:#777}
+.event button{border:0;background:none;text-decoration:underline;color:#555;font-size:12px;margin:3px}
+.empty{color:#777;font-size:13px;padding:15px 0}
+.status{font-size:12px;font-weight:650}
+.purchase-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.counter{display:flex;align-items:center;gap:10px}
+.counter button{width:42px;height:42px;border:1px solid #ccc;border-radius:10px;background:#f5f5f5;font-size:24px}
+.counter output{min-width:30px;text-align:center;font-size:25px;font-weight:750}
+.count-note{font-size:12px;color:#666;line-height:1.7}
+.count-note button{font-size:11px;padding:7px;margin:3px}
+.weekrow{border-bottom:1px solid #eee;padding:12px 0;display:flex;justify-content:space-between;gap:8px;font-size:13px}
+.weekstats .value{font-size:20px}
+.foot{margin-top:30px}
+.bottom{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;gap:10px;background:#fafafaee;backdrop-filter:blur(15px);border-top:1px solid #ddd;padding:10px 15px max(12px,env(safe-area-inset-bottom))}
+.bottom button{width:min(240px,48%);border:0;border-radius:10px;background:transparent;font-weight:700;padding:12px}
+.bottom button.active{background:#ddd}
+section[hidden],[hidden]{display:none!important}
+dialog{width:calc(100% - 24px);max-width:440px;border:1px solid #ddd;border-radius:14px;padding:20px;box-shadow:0 15px 80px #0004}
+dialog::backdrop{background:#0006}
+dialog h2{margin:0 0 15px}
+@media(max-width:350px){.actions{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>La giornata analogica</h1>
+<p>Un'occhiata al tempo. Poi torna alla vita reale.</p>
+</header>
+
+<section id="todayTab">
+<div class="datebar">
+<strong>Oggi / Diario</strong>
+<input type="date" id="day" aria-label="Giorno">
+</div>
+
 <div class="metrics" id="metrics"></div>
-<div class="panel" style="margin-top:12px"><div class="purchase-row"><div><h3 style="margin:0 0 3px">Ordini Amazon</h3><span class="hint">Quanti ordini hai effettuato oggi?</span></div><div class="counter"><button id="purchaseMinus" aria-label="Rimuovi un ordine">−</button><output id="purchaseValue" aria-live="polite">—</output><button id="purchasePlus" aria-label="Aggiungi un ordine">+</button></div></div><p class="count-note">Un ordine = un acquisto. «—» significa non ancora registrato. <button id="purchaseZero" class="outline" style="min-height:31px;padding:5px 9px;margin-left:5px">Nessun ordine oggi</button> <button id="purchaseClear" class="outline" style="min-height:31px;padding:5px 9px">Azzera dato</button></p></div>
-<h2>La mia giornata</h2><div class="panel"><div class="row between"><span id="inout" class="status">Uscita — · Rientro —</span><span class="hint">07:00–23:00</span></div><div class="timeline" id="timeline"></div><div class="ticks"><span>07</span><span>11</span><span>15</span><span>19</span><span>23</span></div><div class="legend" id="legend"></div><div id="events"></div></div>
-<h2>Registra attività</h2><div class="actions"><button data-start="lettura">◫ Lettura</button><button data-start="lezioni">◈ Lezioni</button><button data-start="sport">◉ Sport</button><button data-start="gaming">▣ Gaming</button><button data-start="progetti">▤ Progetti</button><button data-start="preparazione">▧ Prep. lezioni</button><button id="leave">↗ Uscita</button><button id="return">↙ Rientro</button><button id="manualBtn">＋ Manuale</button></div>
-<div id="timerPanel" class="panel" hidden><h3 id="timerTitle">Timer</h3><p id="timerText" style="font-size:28px;font-weight:750;margin:5px 0 15px">00:00</p><div class="row"><button class="primary" id="stopTimer">Termina e salva</button><button class="outline" id="cancelTimer">Annulla</button></div><p class="hint">Il timer si basa sull'ora di inizio, anche se chiudi la pagina. Per sicurezza registra la sessione appena terminata.</p></div>
-<div class="panel"><h3>Tempo di utilizzo · inserimento manuale</h3><div class="formgrid"><div><label for="phone">Telefono (minuti)</label><input id="phone" type="number" min="0" step="1" placeholder="—"></div><div><label for="amazon">Amazon incluso (minuti)</label><input id="amazon" type="number" min="0" step="1" placeholder="—"></div></div><p class="hint">Inserisci i totali da Tempo di utilizzo. Amazon è parte del totale e non si somma. Il trattino significa dato non registrato; 0 significa zero effettivo.</p><button id="saveUsage" class="primary">Salva totali</button><span id="usageMsg" class="hint" aria-live="polite"></span></div>
-<div class="panel"><h3>Orari di uscita e rientro</h3><div class="formgrid"><div><label for="leaveAt">Uscita</label><input id="leaveAt" type="time"></div><div><label for="returnAt">Rientro</label><input id="returnAt" type="time"></div></div><p class="hint">I pulsanti registrano l'ora attuale; qui puoi correggere o cancellare gli orari.</p><button class="primary" id="saveInout">Salva orari</button></div>
+
+<div class="panel">
+<div class="purchase-row">
+<div>
+<h3>Ordini Amazon</h3>
+<span class="hint">Quanti ordini hai effettuato oggi?</span>
+</div>
+<div class="counter">
+<button id="purchaseMinus" aria-label="Meno un ordine">−</button>
+<output id="purchaseValue">—</output>
+<button id="purchasePlus" aria-label="Più un ordine">+</button>
+</div>
+</div>
+<p class="count-note">
+Un ordine = un acquisto. «—» significa non registrato.
+<button class="outline" id="purchaseZero">Nessun ordine oggi</button>
+<button class="outline" id="purchaseClear">Azzera dato</button>
+</p>
+</div>
+
+<h2>La mia giornata</h2>
+<div class="panel">
+<div class="row between">
+<span id="inout" class="status">Uscita — · Rientro —</span>
+<span class="hint">07:00–23:00</span>
+</div>
+<div class="timeline" id="timeline"></div>
+<div class="ticks">
+<span>07</span><span>11</span><span>15</span><span>19</span><span>23</span>
+</div>
+<div class="legend" id="legend"></div>
+<div id="events"></div>
+</div>
+
+<h2>Registra attività</h2>
+<p class="section-intro">Puoi compilare la giornata anche tutta insieme, la sera. I timer sono facoltativi.</p>
+<button class="quick-add" id="manualBtn">＋ Aggiungi attività</button>
+<div class="secondary-actions">
+<button id="leave">↗ Segna uscita</button>
+<button id="return">↙ Segna rientro</button>
+</div>
+
+<details class="timer-details">
+<summary>Usa un timer (facoltativo)</summary>
+<p class="hint">Avvialo solo quando ti è davvero utile.</p>
+<div class="actions">
+<button data-start="lettura">◫ Lettura</button>
+<button data-start="lezioni">◈ Lezioni</button>
+<button data-start="sport">◉ Sport</button>
+<button data-start="gaming">▣ Gaming</button>
+<button data-start="progetti">▤ Progetti</button>
+<button data-start="preparazione">▧ Prep. lezioni</button>
+</div>
+</details>
+
+<div class="panel" id="timerPanel" hidden>
+<h3 id="timerTitle">Timer</h3>
+<p id="timerText" style="font-size:28px;font-weight:750">00:00:00</p>
+<div class="row">
+<button class="primary" id="stopTimer">Termina e salva</button>
+<button class="outline" id="cancelTimer">Annulla</button>
+</div>
+</div>
+
+<div class="panel">
+<h3>Tempo di utilizzo · inserimento manuale</h3>
+<div class="formgrid">
+<div>
+<label for="phone">Telefono (minuti)</label>
+<input type="number" id="phone" min="0" step="1" placeholder="—">
+</div>
+<div>
+<label for="amazon">Amazon incluso (minuti)</label>
+<input type="number" id="amazon" min="0" step="1" placeholder="—">
+</div>
+</div>
+<p class="hint">Amazon è già compreso nel totale del telefono. Il trattino indica un dato mancante, diverso da zero.</p>
+<button class="primary" id="saveUsage">Salva totali</button>
+<span class="hint" id="usageMsg"></span>
+</div>
+
+<div class="panel">
+<h3>Orari di uscita e rientro</h3>
+<div class="formgrid">
+<div><label for="leaveAt">Uscita</label><input type="time" id="leaveAt"></div>
+<div><label for="returnAt">Rientro</label><input type="time" id="returnAt"></div>
+</div>
+<p class="hint">Puoi correggere o cancellare gli orari.</p>
+<button class="primary" id="saveInout">Salva orari</button>
+</div>
 </section>
-<section id="weekTab" hidden><div class="datebar"><strong>Gli ultimi sette giorni</strong><span id="weekRange" class="muted"></span></div><p class="hint">Riepilogo dei sette giorni fino alla data selezionata nella pagina Oggi. Le medie escludono i giorni senza dato.</p><div class="weekstats" id="weekStats"></div><h2>Il quadro settimanale</h2><div id="weekDays" class="panel"></div><h2>Un solo esperimento</h2><div class="panel"><label for="experiment">Una piccola scelta per i prossimi sette giorni</label><select id="experiment"><option value="">Non ancora scelto</option><option value="15 minuti di lettura dopo il rientro">15 minuti di lettura dopo il rientro</option><option value="Aprire il telefono solo dopo colazione">Aprire il telefono solo dopo colazione</option><option value="10 minuti su Field Notes la sera">10 minuti su Field Notes la sera</option></select><p class="hint">Nessun punteggio e nessuna notifica. Una sola prova alla volta.</p></div></section>
-<section class="foot"><p class="hint">I dati sono salvati localmente in questo browser. Se cancelli i dati del sito o apri il file da un altro indirizzo, potrebbero non essere disponibili. Esporta periodicamente una copia. Questa versione non importa automaticamente Tempo di utilizzo né gli ordini Amazon. Le notifiche sono gestite separatamente da Comandi Rapidi.</p><div class="row"><button class="outline" id="exportData">Esporta backup JSON</button><button class="outline" id="importBtn">Importa backup</button><input id="importFile" type="file" accept="application/json,.json" hidden></div></section>
-</main><nav class="bottom"><button id="todayBtn" class="active">Oggi</button><button id="weekBtn">Settimana</button></nav>
-<dialog id="activityDialog"><form id="activityForm" method="dialog"><h2>Registra attività</h2><div><label for="kind">Attività</label><select id="kind"><option value="lettura">Lettura</option><option value="lezioni">Lezioni</option><option value="sport">Sport</option><option value="gaming">Gaming</option><option value="progetti">Progetti</option><option value="preparazione">Preparazione lezioni</option></select></div><div id="sportArea" style="display:none;margin-top:12px"><label for="sportType">Tipo di sport</label><select id="sportType"><option value="Corsa">Corsa</option><option value="Camminata">Camminata</option><option value="Hike">Hike</option></select></div><div class="formgrid" style="margin-top:12px"><div><label for="startAt">Inizio (facoltativo)</label><input id="startAt" type="time"></div><div><label for="duration">Durata (minuti)</label><input id="duration" type="number" min="0" step="1" placeholder="es. 30" required></div></div><p class="hint">Se non ricordi l'inizio, registra soltanto la durata: il totale sarà corretto ma la timeline non inventerà l'orario.</p><div class="row"><button class="primary" type="submit" id="saveActivity">Salva attività</button><button type="button" class="outline" id="closeDialog">Annulla</button></div></form></dialog>
+
+<section id="weekTab" hidden>
+<div class="datebar">
+<strong>Gli ultimi sette giorni</strong>
+<span class="muted" id="weekRange"></span>
+</div>
+<p class="hint">Le medie escludono i giorni senza dato.</p>
+<div class="weekstats" id="weekStats"></div>
+<h2>Il quadro settimanale</h2>
+<div class="panel" id="weekDays"></div>
+<h2>Un solo esperimento</h2>
+<div class="panel">
+<label for="experiment">Una piccola scelta per i prossimi sette giorni</label>
+<select id="experiment">
+<option value="">Non ancora scelto</option>
+<option value="15 minuti di lettura dopo il rientro">15 minuti di lettura dopo il rientro</option>
+<option value="Aprire il telefono solo dopo colazione">Aprire il telefono solo dopo colazione</option>
+<option value="10 minuti su Field Notes la sera">10 minuti su Field Notes la sera</option>
+</select>
+<p class="hint">Nessun punteggio. Una sola prova alla volta.</p>
+</div>
+</section>
+
+<section class="foot">
+<h2>Proteggi le registrazioni</h2>
+<p class="hint">I dati sono salvati nel browser di questo dispositivo. Il backup dell'iPhone va esportato dall'iPhone stesso. Le notifiche sono gestite separatamente da Comandi Rapidi.</p>
+<div class="row">
+<button class="outline" id="exportData">Esporta backup JSON</button>
+<button class="outline" id="importBtn">Importa backup</button>
+<input type="file" id="importFile" accept=".json,application/json" hidden>
+</div>
+</section>
+</main>
+
+<nav class="bottom">
+<button id="todayBtn" class="active">Oggi</button>
+<button id="weekBtn">Settimana</button>
+</nav>
+
+<dialog id="activityDialog">
+<form id="activityForm">
+<h2>Registra attività</h2>
+<label for="kind">Attività</label>
+<select id="kind">
+<option value="lettura">Lettura</option>
+<option value="lezioni">Lezioni</option>
+<option value="sport">Sport</option>
+<option value="gaming">Gaming</option>
+<option value="progetti">Progetti</option>
+<option value="preparazione">Preparazione lezioni</option>
+</select>
+<div id="sportArea" hidden style="margin-top:12px">
+<label for="sportType">Tipo di sport</label>
+<select id="sportType">
+<option>Corsa</option>
+<option>Camminata</option>
+<option>Hike</option>
+</select>
+</div>
+<div class="formgrid" style="margin-top:12px">
+<div>
+<label for="startAt">Inizio (facoltativo)</label>
+<input type="time" id="startAt">
+</div>
+<div>
+<label for="duration">Durata (minuti)</label>
+<input type="number" id="duration" min="0" max="1440" step="1" required placeholder="es. 30">
+</div>
+</div>
+<p class="hint">Senza orario di inizio, la durata contribuisce ai totali ma non alla timeline.</p>
+<div class="row">
+<button class="primary" type="submit">Salva attività</button>
+<button class="outline" type="button" id="closeDialog">Annulla</button>
+</div>
+</form>
+</dialog>
+
 <script>
-(()=>{'use strict';
-const KEY='analogica.v1', TIMER='analogica.timer.v1';const colors={lettura:'#965ce8',lezioni:'#4295eb',sport:'#36b76d',gaming:'#e86d76',progetti:'#f0bd55',preparazione:'#7276c4'};const names={lettura:'Lettura',lezioni:'Lezioni',sport:'Sport',gaming:'Gaming',progetti:'Progetti',preparazione:'Prep. lezioni'};const $=id=>document.getElementById(id);let db={days:{},experiment:''},active=null,editId=null;try{let x=JSON.parse(localStorage.getItem(KEY)||'null');if(x&&x.days)db=x}catch(e){}try{active=JSON.parse(localStorage.getItem(TIMER)||'null')}catch(e){};
-const isoDate=(d=new Date())=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;$('day').value=isoDate();const dayObj=()=>db.days[$('day').value]||(db.days[$('day').value]={phone:null,amazon:null,purchases:null,leave:null,return:null,activities:[]});const save=()=>localStorage.setItem(KEY,JSON.stringify(db));const fmt=v=>v===null||v===undefined?'—':v>=60?`${Math.floor(v/60)} h ${String(v%60).padStart(2,'0')} min`:`${v} min`;const todayDate=()=>$('day').value;const time=(d=new Date())=>`${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;const mins=t=>t?Number(t.slice(0,2))*60+Number(t.slice(3)):null;const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function render(){let d=dayObj(),sums={};for(let k of Object.keys(names)){let a=d.activities.filter(x=>x.kind===k);sums[k]=a.length?a.reduce((s,x)=>s+x.duration,0):null}const card=(name,value,sub='',big=false)=>`<div class="metric ${big?'big':''}"><div class="name">${name}</div><div class="value">${fmt(value)}</div>${sub?`<div class="sub">${sub}</div>`:''}</div>`; $('metrics').innerHTML=card('Telefono',d.phone,`Amazon (compreso): <strong>${fmt(d.amazon)}</strong>`,true)+card('Lettura',sums.lettura)+card('Lezioni',sums.lezioni)+card('Sport',sums.sport)+card('Gaming',sums.gaming)+card('Progetti',sums.progetti)+card('Preparazione lezioni',sums.preparazione);
-$('purchaseValue').textContent=d.purchases??'—';$('inout').textContent=`Uscita ${d.leave||'—'} · Rientro ${d.return||'—'}`;$('leaveAt').value=d.leave||'';$('returnAt').value=d.return||'';$('phone').value=d.phone??'';$('amazon').value=d.amazon??'';
-let bar=$('timeline');bar.innerHTML='';if(d.leave&&d.return){let a=mins(d.leave),b=mins(d.return);if(b>a){let el=document.createElement('div');el.className='seg';el.style.cssText=`left:${Math.max(0,(a-420)/960*100)}%;width:${Math.max(0,(Math.min(1380,b)-Math.max(420,a))/960*100)}%;background:#bcbcbc`;bar.appendChild(el)}}for(let a of d.activities){if(!a.start)continue;let start=mins(a.start),end=start+a.duration;let l=Math.max(420,start),r=Math.min(1380,end);if(r<=l)continue;let el=document.createElement('div');el.className='seg';el.style.left=((l-420)/960*100)+'%';el.style.width=((r-l)/960*100)+'%';el.style.background=colors[a.kind];bar.appendChild(el)}$('legend').innerHTML=Object.keys(names).map(k=>`<span><i class="swatch" style="background:${colors[k]}"></i>${names[k]}</span>`).join('');$('events').innerHTML=d.activities.length?d.activities.map(a=>`<div class="event"><span><strong>${escape(names[a.kind])}${a.sportType?' · '+escape(a.sportType):''}</strong> <small>${a.start?escape(a.start)+' · ':''}${fmt(a.duration)}</small></span><span><button data-edit="${escape(a.id)}">Modifica</button><button data-delete="${escape(a.id)}">Elimina</button></span></div>`).join(''):'<div class="empty">Nessuna attività registrata.</div>';
-$('timerPanel').hidden=!active; if(active){$('timerTitle').textContent='Timer · '+names[active.kind]+(active.sportType?' · '+active.sportType:'');tick()}$('experiment').value=db.experiment||'';renderWeek()}
-function tick(){if(!active)return;let secs=Math.max(0,Math.floor((Date.now()-active.started)/1000));$('timerText').textContent=String(Math.floor(secs/3600)).padStart(2,'0')+':'+String(Math.floor(secs/60)%60).padStart(2,'0')+':'+String(secs%60).padStart(2,'0')};setInterval(tick,1000);
-function changePurchase(action){let d=dayObj();if(action==='clear')d.purchases=null;else if(action==='zero')d.purchases=0;else if(action==='plus')d.purchases=(d.purchases??0)+1;else if(action==='minus')d.purchases=Math.max(0,(d.purchases??0)-1);save();render()};$('purchasePlus').onclick=()=>changePurchase('plus');$('purchaseMinus').onclick=()=>changePurchase('minus');$('purchaseZero').onclick=()=>changePurchase('zero');$('purchaseClear').onclick=()=>changePurchase('clear');
-$('saveUsage').onclick=()=>{let p=$('phone').value.trim(),a=$('amazon').value.trim();let n=v=>v===''?null:Number(v);if((p!==''&&(!Number.isInteger(n(p))||n(p)<0))||(a!==''&&(!Number.isInteger(n(a))||n(a)<0))){alert('Inserisci minuti interi non negativi.');return}if(n(p)!==null&&n(a)!==null&&n(a)>n(p)){alert('Amazon non può superare il tempo totale al telefono.');return}let d=dayObj();d.phone=n(p);d.amazon=n(a);save();render();$('usageMsg').textContent=' Salvato.'};
-$('leave').onclick=()=>setEvent('leave');$('return').onclick=()=>setEvent('return');function setEvent(k){if(todayDate()!==isoDate()&&!confirm('Hai selezionato una data diversa da oggi. Registrare comunque l’ora attuale?'))return;dayObj()[k]=time();save();render()};$('saveInout').onclick=()=>{let d=dayObj();d.leave=$('leaveAt').value||null;d.return=$('returnAt').value||null;save();render()};
-function openModal(k='lettura',a=null){editId=a?.id||null;$('kind').value=a?.kind||k;$('duration').value=a?.duration??'';$('startAt').value=a?.start||'';$('sportType').value=a?.sportType||'Corsa';$('sportArea').style.display=$('kind').value==='sport'?'block':'none';$('activityDialog').showModal()};$('manualBtn').onclick=()=>openModal();$('kind').onchange=()=>$('sportArea').style.display=$('kind').value==='sport'?'block':'none';$('closeDialog').onclick=()=>$('activityDialog').close();$('activityForm').onsubmit=e=>{e.preventDefault();let v=Number($('duration').value);if(!Number.isInteger(v)||v<0||v>1440){alert('Inserisci una durata compresa tra 0 e 1440 minuti.');return}let d=dayObj(),a={id:editId||`${Date.now()}-${Math.random()}`,kind:$('kind').value,duration:v,start:$('startAt').value||null,sportType:$('kind').value==='sport'?$('sportType').value:null};if(a.start&&mins(a.start)+v>1440){alert('L’attività supera la mezzanotte. Dividila in due registrazioni.');return}if(editId)d.activities=d.activities.map(x=>x.id===editId?a:x);else d.activities.push(a);save();$('activityDialog').close();render()};$('events').onclick=e=>{let id=e.target?.dataset?.edit||e.target?.dataset?.delete;if(!id)return;let d=dayObj(),a=d.activities.find(x=>x.id===id);if(!a)return;if(e.target.dataset.delete){if(confirm('Eliminare questa registrazione?')){d.activities=d.activities.filter(x=>x.id!==id);save();render()}}else openModal(a.kind,a)};
-document.querySelectorAll('[data-start]').forEach(b=>b.onclick=()=>{if(active){alert('C’è già un timer attivo. Termina o annulla quello precedente.');return}let kind=b.dataset.start;let sportType=kind==='sport'?prompt('Sport: scrivi Corsa, Camminata o Hike','Camminata'):null;if(kind==='sport'){if(sportType===null)return;sportType=['Corsa','Camminata','Hike'].find(x=>x.toLowerCase()===sportType.trim().toLowerCase());if(!sportType){alert('Scegli Corsa, Camminata o Hike.');return}}active={kind,sportType,started:Date.now(),date:isoDate(),startTime:time()};localStorage.setItem(TIMER,JSON.stringify(active));render()});$('stopTimer').onclick=()=>{if(!active)return;let a=active;let duration=Math.max(0,Math.round((Date.now()-a.started)/60000));if(a.date!==isoDate()) {alert('Il timer attraversa la mezzanotte: registra manualmente le due parti.');return}let d=db.days[a.date]||(db.days[a.date]={phone:null,amazon:null,purchases:null,leave:null,return:null,activities:[]});d.activities.push({id:`${Date.now()}-${Math.random()}`,kind:a.kind,sportType:a.sportType,duration,start:a.startTime});active=null;localStorage.removeItem(TIMER);save();render()};$('cancelTimer').onclick=()=>{if(confirm('Annullare il timer senza salvare?')){active=null;localStorage.removeItem(TIMER);render()}};
-$('day').onchange=render;function switchTab(tab){$('todayTab').hidden=tab!=='today';$('weekTab').hidden=tab!=='week';$('todayBtn').classList.toggle('active',tab==='today');$('weekBtn').classList.toggle('active',tab==='week');render()}$('todayBtn').onclick=()=>switchTab('today');$('weekBtn').onclick=()=>switchTab('week');$('experiment').onchange=e=>{db.experiment=e.target.value;save()};
-function renderWeek(){let base=new Date(todayDate()+'T12:00:00'),days=[];for(let i=6;i>=0;i--){let t=new Date(base);t.setDate(t.getDate()-i);let key=isoDate(t);days.push({key,d:db.days[key]})}let keys=['phone','amazon','purchases','lettura','lezioni','sport','gaming','progetti','preparazione'];let stats={};for(let k of keys){let arr=days.map(({d})=>{if(!d)return null;if(k==='phone'||k==='amazon'||k==='purchases')return d[k];let a=d.activities.filter(x=>x.kind===k);return a.length?a.reduce((s,x)=>s+x.duration,0):null}).filter(x=>x!==null&&x!==undefined);stats[k]={count:arr.length,sum:arr.reduce((a,b)=>a+b,0),average:arr.length?Math.round(arr.reduce((a,b)=>a+b,0)/arr.length):null}}$('weekRange').textContent=`${days[0].key.slice(5)} – ${days[6].key.slice(5)}`;$('weekStats').innerHTML=keys.map(k=>`<div class="metric"><div class="name">${k==='phone'?'Telefono · media':k==='amazon'?'Amazon · media':k==='purchases'?'Ordini Amazon · totale':names[k]+' · totale'}</div><div class="value">${k==='purchases'?(stats[k].count?stats[k].sum+' ordini':'—'):fmt(k==='phone'||k==='amazon'?stats[k].average:stats[k].count?stats[k].sum:null)}</div><div class="sub">${stats[k].count}/7 giorni registrati${k==='amazon'?' · incluso nel telefono':''}</div></div>`).join('');$('weekDays').innerHTML=days.map(({key,d})=>`<div class="weekrow"><span>${key.slice(5)}</span><span>${d?.phone==null?'Telefono —':'Telefono '+fmt(d.phone)} · ${d?.activities?.length||0} attività</span></div>`).join('')+`<p class="hint">Le attività prive di un orario di inizio contribuiscono ai totali, ma non alla timeline. Senza registrazioni orarie di utilizzo del telefono non possiamo identificare con precisione le ore di maggiore scrolling.</p>`}
-$('exportData').onclick=()=>{let blob=new Blob([JSON.stringify({version:2,exportedAt:new Date().toISOString(),data:db},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='giornata-analogica-backup-'+isoDate()+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000)};$('importBtn').onclick=()=>$('importFile').click();$('importFile').onchange=async e=>{let f=e.target.files?.[0];if(!f)return;try{let obj=JSON.parse(await f.text());if(![1,2].includes(obj.version)||!obj.data||typeof obj.data.days!=='object')throw Error('Formato non valido');if(!confirm('Importare il backup? Sostituirà tutti i dati presenti.'))return;db=obj.data;save();render();alert('Backup importato.')}catch(err){alert('Impossibile importare il file: '+err.message)}finally{e.target.value=''}};
-render();})();
-</script></body></html>
+(()=>{
+"use strict";
+const KEY="analogica.v1";
+const TIMER="analogica.timer.v1";
+const names={
+lettura:"Lettura",
+lezioni:"Lezioni",
+sport:"Sport",
+gaming:"Gaming",
+progetti:"Progetti",
+preparazione:"Prep. lezioni"
+};
+const colors={
+lettura:"#965ce8",
+lezioni:"#4295eb",
+sport:"#36b76d",
+gaming:"#e86d76",
+progetti:"#f0bd55",
+preparazione:"#7276c4"
+};
+const $=id=>document.getElementById(id);
+const emptyDay=()=>({
+phone:null,amazon:null,purchases:null,
+leave:null,return:null,activities:[]
+});
+let db={days:{},experiment:""};
+let active=null;
+let editId=null;
+
+try{
+const saved=JSON.parse(localStorage.getItem(KEY)||"null");
+if(saved&&saved.days)db=saved;
+}catch(e){}
+try{active=JSON.parse(localStorage.getItem(TIMER)||"null");}
+catch(e){}
+
+function isoDate(d=new Date()){
+return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+}
+function nowTime(){
+const d=new Date();
+return `${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`;
+}
+function minutes(t){
+return t?Number(t.slice(0,2))*60+Number(t.slice(3)):null;
+}
+function format(v){
+if(v===null||v===undefined)return "—";
+if(v>=60)return `${Math.floor(v/60)} h ${String(v%60).padStart(2,"0")} min`;
+return `${v} min`;
+}
+function escapeHTML(s){
+return String(s).replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",
+'"':"&quot;","'":"&#39;"
+}[c]));
+}
+function day(){
+const key=$("day").value;
+if(!db.days[key])db.days[key]=emptyDay();
+return db.days[key];
+}
+function save(){
+try{localStorage.setItem(KEY,JSON.stringify(db));return true;}
+catch(e){alert("Salvataggio non riuscito. Esporta un backup e controlla lo spazio disponibile.");return false;}
+}
+
+$("day").value=isoDate();
+
+function render(){
+const d=day();
+const sums={};
+for(const k of Object.keys(names)){
+const arr=d.activities.filter(a=>a.kind===k);
+sums[k]=arr.length?arr.reduce((s,a)=>s+a.duration,0):null;
+}
+function card(label,val,sub="",big=false){
+return `<div class="metric ${big?"big":""}">
+<div class="name">${label}</div>
+<div class="value">${format(val)}</div>
+${sub?`<div class="sub">${sub}</div>`:""}
+</div>`;
+}
+$("metrics").innerHTML=
+card("Telefono",d.phone,`Amazon (compreso): ${format(d.amazon)}`,true)+
+Object.keys(names).map(k=>card(names[k],sums[k])).join("");
+
+$("purchaseValue").textContent=d.purchases??"—";
+$("inout").textContent=`Uscita ${d.leave||"—"} · Rientro ${d.return||"—"}`;
+$("leaveAt").value=d.leave||"";
+$("returnAt").value=d.return||"";
+$("phone").value=d.phone??"";
+$("amazon").value=d.amazon??"";
+
+renderTimeline(d);
+renderEvents(d);
+$("timerPanel").hidden=!active;
+if(active){
+$("timerTitle").textContent="Timer · "+names[active.kind];
+tick();
+}
+$("experiment").value=db.experiment||"";
+renderWeek();
+}
+
+function renderTimeline(d){
+const bar=$("timeline");
+bar.innerHTML="";
+function segment(start,end,color){
+const left=Math.max(420,start),right=Math.min(1380,end);
+if(right<=left)return;
+const el=document.createElement("div");
+el.className="seg";
+el.style.left=((left-420)/960*100)+"%";
+el.style.width=((right-left)/960*100)+"%";
+el.style.background=color;
+bar.appendChild(el);
+}
+if(d.leave&&d.return){
+const a=minutes(d.leave),b=minutes(d.return);
+if(b>a)segment(a,b,"#bcbcbc");
+}
+for(const a of d.activities){
+if(a.start)segment(minutes(a.start),minutes(a.start)+a.duration,colors[a.kind]);
+}
+$("legend").innerHTML=Object.keys(names).map(k=>
+`<span><i class="swatch" style="background:${colors[k]}"></i>${names[k]}</span>`
+).join("");
+}
+
+function renderEvents(d){
+$("events").innerHTML=d.activities.length?
+d.activities.map(a=>`
+<div class="event">
+<span><strong>${escapeHTML(names[a.kind])}${a.sportType?" · "+escapeHTML(a.sportType):""}</strong>
+<small>${a.start?escapeHTML(a.start)+" · ":""}${format(a.duration)}</small></span>
+<span>
+<button data-edit="${escapeHTML(a.id)}">Modifica</button>
+<button data-delete="${escapeHTML(a.id)}">Elimina</button>
+</span>
+</div>`).join(""):
+'<div class="empty">Nessuna attività registrata.</div>';
+}
+
+function changePurchase(action){
+const d=day();
+if(action==="clear")d.purchases=null;
+if(action==="zero")d.purchases=0;
+if(action==="plus")d.purchases=(d.purchases??0)+1;
+if(action==="minus")d.purchases=Math.max(0,(d.purchases??0)-1);
+save();render();
+}
+$("purchasePlus").onclick=()=>changePurchase("plus");
+$("purchaseMinus").onclick=()=>changePurchase("minus");
+$("purchaseZero").onclick=()=>changePurchase("zero");
+$("purchaseClear").onclick=()=>changePurchase("clear");
+
+$("saveUsage").onclick=()=>{
+const p=$("phone").value.trim(),a=$("amazon").value.trim();
+const num=v=>v===""?null:Number(v);
+if([p,a].some(v=>v!==""&&(!Number.isInteger(Number(v))||Number(v)<0))){
+alert("Inserisci minuti interi non negativi.");return;
+}
+if(num(p)!==null&&num(a)!==null&&num(a)>num(p)){
+alert("Amazon non può superare il tempo totale al telefono.");return;
+}
+const d=day();
+d.phone=num(p);d.amazon=num(a);
+if(save())$("usageMsg").textContent=" Salvato.";
+render();
+};
+
+function mark(k){
+if($("day").value!==isoDate()&&!confirm("Stai registrando l'ora attuale in un'altra data. Continuare?"))return;
+day()[k]=nowTime();save();render();
+}
+$("leave").onclick=()=>mark("leave");
+$("return").onclick=()=>mark("return");
+$("saveInout").onclick=()=>{
+const d=day();
+d.leave=$("leaveAt").value||null;
+d.return=$("returnAt").value||null;
+save();render();
+};
+
+function openModal(k="lettura",item=null){
+editId=item?.id||null;
+$("kind").value=item?.kind||k;
+$("duration").value=item?.duration??"";
+$("startAt").value=item?.start||"";
+$("sportType").value=item?.sportType||"Corsa";
+$("sportArea").hidden=$("kind").value!=="sport";
+$("activityDialog").showModal();
+}
+$("manualBtn").onclick=()=>openModal();
+$("kind").onchange=()=>{
+$("sportArea").hidden=$("kind").value!=="sport";
+};
+$("closeDialog").onclick=()=>$("activityDialog").close();
+$("activityForm").onsubmit=e=>{
+e.preventDefault();
+const duration=Number($("duration").value);
+if(!Number.isInteger(duration)||duration<0||duration>1440){
+alert("Durata non valida.");return;
+}
+const start=$("startAt").value||null;
+if(start&&minutes(start)+duration>1440){
+alert("L'attività supera la mezzanotte.");return;
+}
+const d=day();
+const item={
+id:editId||`${Date.now()}-${Math.random()}`,
+kind:$("kind").value,
+duration,start,
+sportType:$("kind").value==="sport"?$("sportType").value:null
+};
+if(editId)d.activities=d.activities.map(a=>a.id===editId?item:a);
+else d.activities.push(item);
+save();
+$("activityDialog").close();
+render();
+};
+$("events").onclick=e=>{
+const button=e.target.closest("button");
+if(!button)return;
+const id=button.dataset.edit||button.dataset.delete;
+const d=day(),item=d.activities.find(a=>a.id===id);
+if(!item)return;
+if(button.dataset.delete){
+if(confirm("Eliminare questa registrazione?")){
+d.activities=d.activities.filter(a=>a.id!==id);
+save();render();
+}
+}else openModal(item.kind,item);
+};
+
+function tick(){
+if(!active)return;
+const sec=Math.max(0,Math.floor((Date.now()-active.started)/1000));
+$("timerText").textContent=
+String(Math.floor(sec/3600)).padStart(2,"0")+":"+
+String(Math.floor(sec/60)%60).padStart(2,"0")+":"+
+String(sec%60).padStart(2,"0");
+}
+setInterval(tick,1000);
+document.querySelectorAll("[data-start]").forEach(button=>{
+button.onclick=()=>{
+if(active){alert("Hai già un timer attivo.");return;}
+const kind=button.dataset.start;
+let sportType=null;
+if(kind==="sport"){
+sportType=prompt("Corsa, Camminata o Hike?","Camminata");
+if(sportType===null)return;
+sportType=["Corsa","Camminata","Hike"].find(x=>x.toLowerCase()===sportType.trim().toLowerCase());
+if(!sportType){alert("Tipo di sport non valido.");return;}
+}
+active={kind,sportType,started:Date.now(),date:isoDate(),startTime:nowTime()};
+localStorage.setItem(TIMER,JSON.stringify(active));
+render();
+};
+});
+$("stopTimer").onclick=()=>{
+if(!active)return;
+if(active.date!==isoDate()){
+alert("Il timer attraversa la mezzanotte: registra manualmente le due parti.");return;
+}
+const a=active;
+const duration=Math.max(0,Math.round((Date.now()-a.started)/60000));
+const d=db.days[a.date]||(db.days[a.date]=emptyDay());
+d.activities.push({
+id:`${Date.now()}-${Math.random()}`,
+kind:a.kind,sportType:a.sportType,
+duration,start:a.startTime
+});
+active=null;
+localStorage.removeItem(TIMER);
+save();render();
+};
+$("cancelTimer").onclick=()=>{
+if(confirm("Annullare il timer?")){
+active=null;
+localStorage.removeItem(TIMER);
+render();
+}
+};
+
+function renderWeek(){
+const base=new Date($("day").value+"T12:00:00");
+const days=[];
+for(let i=6;i>=0;i--){
+const d=new Date(base);
+d.setDate(d.getDate()-i);
+const key=isoDate(d);
+days.push({key,d:db.days[key]});
+}
+const keys=["phone","amazon","purchases",...Object.keys(names)];
+const stats={};
+for(const k of keys){
+const values=days.map(({d})=>{
+if(!d)return null;
+if(["phone","amazon","purchases"].includes(k))return d[k];
+const items=d.activities.filter(a=>a.kind===k);
+return items.length?items.reduce((s,a)=>s+a.duration,0):null;
+}).filter(x=>x!==null&&x!==undefined);
+stats[k]={
+count:values.length,
+sum:values.reduce((a,b)=>a+b,0),
+average:values.length?Math.round(values.reduce((a,b)=>a+b,0)/values.length):null
+};
+}
+$("weekRange").textContent=days[0].key.slice(5)+" – "+days[6].key.slice(5);
+$("weekStats").innerHTML=keys.map(k=>{
+const v=stats[k];
+const label=k==="phone"?"Telefono · media":
+k==="amazon"?"Amazon · media":
+k==="purchases"?"Ordini Amazon · totale":names[k]+" · totale";
+const display=k==="purchases"?(v.count?v.sum+" ordini":"—"):
+format(["phone","amazon"].includes(k)?v.average:v.count?v.sum:null);
+return `<div class="metric"><div class="name">${label}</div>
+<div class="value">${display}</div>
+<div class="sub">${v.count}/7 giorni registrati</div></div>`;
+}).join("");
+$("weekDays").innerHTML=days.map(({key,d})=>
+`<div class="weekrow"><span>${key.slice(5)}</span>
+<span>${d?.phone==null?"Telefono —":"Telefono "+format(d.phone)}
+ · ${d?.activities?.length||0} attività</span></div>`
+).join("")+
+'<p class="hint">I dati senza orario contribuiscono ai totali ma non alla linea della giornata.</p>';
+}
+
+function switchTab(tab){
+$("todayTab").hidden=tab!=="today";
+$("weekTab").hidden=tab!=="week";
+$("todayBtn").classList.toggle("active",tab==="today");
+$("weekBtn").classList.toggle("active",tab==="week");
+render();
+}
+$("todayBtn").onclick=()=>switchTab("today");
+$("weekBtn").onclick=()=>switchTab("week");
+$("day").onchange=render;
+$("experiment").onchange=e=>{db.experiment=e.target.value;save();};
+
+$("exportData").onclick=()=>{
+const blob=new Blob([JSON.stringify({
+version:2,exportedAt:new Date().toISOString(),data:db
+},null,2)],{type:"application/json"});
+const url=URL.createObjectURL(blob);
+const a=document.createElement("a");
+a.href=url;
+a.download="giornata-analogica-backup-"+isoDate()+".json";
+document.body.appendChild(a);
+a.click();a.remove();
+setTimeout(()=>URL.revokeObjectURL(url),3000);
+};
+$("importBtn").onclick=()=>$("importFile").click();
+$("importFile").onchange=async e=>{
+const file=e.target.files?.[0];
+if(!file)return;
+try{
+const obj=JSON.parse(await file.text());
+if(![1,2].includes(obj.version)||!obj.data||typeof obj.data.days!=="object")
+throw Error("Formato non valido");
+if(!confirm("Importare il backup? Sostituirà i dati presenti."))return;
+db=obj.data;
+save();render();
+alert("Backup importato.");
+}catch(err){alert("Impossibile importare il backup: "+err.message);}
+finally{e.target.value="";}
+};
+render();
+})();
+</script>
+</body>
+</html>
+
