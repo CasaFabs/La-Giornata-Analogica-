@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f5f5f4"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Giornata analogica"><title>La giornata analogica · 0.7</title>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f5f5f4"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Giornata analogica"><title>La giornata analogica · 0.8</title>
 <style>
 :root{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;color:#191919;background:#f5f5f4}*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button{cursor:pointer}main{max-width:560px;margin:auto;padding:25px 17px 115px}header h1{font-family:Georgia,serif;font-size:29px;letter-spacing:-.9px;margin:0 0 8px}header p,.muted{color:#666;font-size:13px}.datebar{display:flex;align-items:center;justify-content:space-between;margin:20px 0 15px;gap:10px}.datebar input{border:1px solid #d2d2d2;background:white;border-radius:10px;padding:9px;font-size:15px;max-width:170px}h2{font-family:Georgia,serif;font-size:21px;margin:25px 0 12px}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:9px}.metric{border:1px solid #d5d5d5;background:#fff;border-radius:12px;padding:14px 12px;min-height:100px}.metric.big{grid-column:span 2}.metric .name{font-size:13px}.metric .value{font-size:24px;font-weight:750;margin-top:6px;letter-spacing:-.6px}.metric .sub{font-size:12px;color:#626262;margin-top:5px}.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.actions button,.outline{border:1px solid #cfcfcf;background:white;border-radius:10px;min-height:48px;padding:10px 5px;font-weight:600;font-size:13px;color:#252525}.actions button:active,.outline:active{background:#e8e8e8}.panel{border:1px solid #d8d8d8;background:#fff;border-radius:13px;padding:14px;margin-top:12px}.panel h3{margin:0 0 12px;font-size:15px}label{font-size:13px;color:#454545;display:block;margin-bottom:5px}input[type=number],input[type=time],select{width:100%;padding:11px;border-radius:9px;border:1px solid #ccc;background:#fff;color:#111;min-width:0}input[type=number]{appearance:textfield}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.formgrid>div{min-width:0}.primary{background:#222;color:white;border:0;border-radius:9px;padding:12px 16px;font-weight:700}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.row.between{justify-content:space-between}.hint{font-size:12px;color:#686868;line-height:1.5}.timeline{position:relative;background:#e4e4e4;height:20px;border-radius:5px;overflow:hidden;margin:15px 0 10px}.seg{position:absolute;top:0;height:100%;min-width:2px}.ticks{display:flex;justify-content:space-between;color:#666;font-size:11px}.legend{display:flex;gap:9px;flex-wrap:wrap;font-size:11px;margin-top:11px;color:#555}.swatch{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:4px}.event{font-size:13px;border-top:1px solid #eee;padding:10px 0;display:flex;justify-content:space-between;gap:8px;align-items:center}.event small{color:#777}.event button{border:0;background:none;text-decoration:underline;color:#555;font-size:12px}.bottom{position:fixed;bottom:0;left:0;right:0;background:#fafafaee;backdrop-filter:blur(15px);border-top:1px solid #ddd;padding:10px 15px max(12px,env(safe-area-inset-bottom));display:flex;justify-content:center;gap:10px}.bottom button{width:min(240px,48%);padding:11px 8px;border-radius:10px;border:0;background:transparent;font-weight:700}.bottom button.active{background:#ddd}section[hidden]{display:none!important}.weekrow{border-bottom:1px solid #e4e4e4;padding:12px 0;display:flex;justify-content:space-between}.note{border-left:3px solid #555;padding-left:12px;font-size:14px;color:#444}.danger{color:#a22!important}.status{font-size:12px;font-weight:650;color:#333}.foot{margin-top:30px}dialog{border:1px solid #ddd;border-radius:14px;padding:20px;width:calc(100% - 24px);max-width:440px;box-shadow:0 15px 80px #0004}dialog::backdrop{background:#0006}dialog h2{margin:0 0 15px}.empty{color:#777;font-size:13px;padding:15px 0}.weekstats{display:grid;grid-template-columns:1fr 1fr;gap:8px}.weekstats .metric{min-height:85px}.weekstats .value{font-size:20px}.purchase-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.counter{display:flex;align-items:center;gap:15px}.counter button{width:44px;height:44px;border:1px solid #c6c6c6;border-radius:11px;background:#f5f5f5;font-size:24px}.counter output{min-width:35px;text-align:center;font-weight:750;font-size:27px}.count-note{font-size:12px;color:#656565;margin:9px 0 0}.metric .value.small{font-size:20px}@media(max-width:350px){main{padding-left:10px;padding-right:10px}.actions{grid-template-columns:repeat(2,1fr)}}
 
@@ -38,6 +38,17 @@
 .event-meta{display:block;margin-top:4px}
 .event-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:1px}
 
+/* 0.8 - risveglio, Amazon e giornate in casa */
+.snooze-indicator{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:750;border:1px solid #d2d2d2;border-radius:30px;padding:6px 10px;background:#f5f5f5;color:#666}
+.snooze-indicator.good{background:#e5f4e9;border-color:#90c89c;color:#236c39}
+.snooze-indicator.bad{background:#fde9e9;border-color:#e4a8a8;color:#aa2929}
+.amazon-flow{border:1px solid #ddd;border-radius:10px;background:#f8f8f8;padding:12px;margin-top:13px}
+.amazon-flow h4{font-size:14px;margin:0 0 8px}
+.amazon-flow[hidden]{display:none!important}
+.amazon-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}
+.amazon-buttons button{min-height:40px;padding:9px 12px}
+.home-state{font-size:12px;color:#555;margin-top:10px}
+.small-button{min-height:37px!important;padding:7px 10px!important}
 /* 0.7 - risveglio e categorie quotidiane */
 .wake-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .wake-grid .full{grid-column:1/-1}
@@ -57,7 +68,7 @@
 </details>
 <div id="missingNotice" class="missing-note" role="status"></div>
 <div class="panel" id="wakePanel">
-  <div class="wake-heading"><h3 style="margin:0">Risveglio</h3><span class="hint">Facoltativo</span></div>
+  <div class="wake-heading"><h3 style="margin:0">Risveglio</h3><span id="snoozeIndicator" class="snooze-indicator" aria-live="polite">● Snooze —</span></div>
   <p class="wake-caption">A che ora suona la sveglia e quando ti alzi davvero?</p>
   <div class="wake-grid" style="margin-top:12px">
     <div><label for="alarmAt">Prima sveglia</label><input id="alarmAt" type="time"></div>
@@ -68,13 +79,33 @@
   <p class="wake-summary" id="wakeSummary">Nessun risveglio registrato.</p>
   <p class="hint">Lo snooze è manuale: 0 significa nessuno, — significa non registrato. Il ritardo è calcolato dagli orari, non dal numero di snooze.</p>
 </div>
+<div class="panel" id="amazonPanel">
+  <h3>Acquisti Amazon di oggi</h3>
+  <div class="purchase-row">
+    <span class="hint">Numero di ordini effettuati</span>
+    <div class="counter"><button id="purchaseMinus" aria-label="Rimuovi un ordine">−</button><output id="purchaseValue" aria-live="polite">—</output><button id="purchasePlus" aria-label="Aggiungi un ordine">+</button></div>
+  </div>
+  <p class="count-note">Un ordine = un acquisto, anche con più articoli. «—» = non registrato.</p>
+  <div class="amazon-buttons"><button id="confirmPurchases" class="primary" type="button">Conferma acquisti</button><button id="purchaseZero" class="outline small-button" type="button">Nessun ordine</button><button id="purchaseClear" class="outline small-button" type="button">Cancella dato</button></div>
+  <p id="purchasesConfirmed" class="hint" aria-live="polite"></p>
+  <div class="amazon-flow" id="amazonFlow" hidden>
+    <h4>Quanto tempo hai passato su Amazon oggi?</h4>
+    <p class="hint">Considera solo i minuti identificabili con attendibilità, anche da Safari.</p>
+    <label for="amazon">Minuti su Amazon</label><input id="amazon" type="number" min="0" step="1" placeholder="— non registrato" style="max-width:210px">
+    <div class="amazon-buttons"><button class="primary" id="saveUsage" type="button">Salva tempo</button><button class="outline small-button" id="skipAmazon" type="button">Non lo so</button></div>
+    <span id="usageMsg" class="hint" aria-live="polite"></span>
+  </div>
+  <p id="amazonSavedSummary" class="hint"></p>
+  <button id="editAmazonTime" class="outline small-button" type="button">Modifica tempo Amazon</button>
+</div>
 <div class="metrics" id="metrics"></div>
-<div class="panel" style="margin-top:12px"><div class="purchase-row"><div><h3 style="margin:0 0 3px">Ordini Amazon</h3><span class="hint">Quanti ordini hai effettuato oggi?</span></div><div class="counter"><button id="purchaseMinus" aria-label="Rimuovi un ordine">−</button><output id="purchaseValue" aria-live="polite">—</output><button id="purchasePlus" aria-label="Aggiungi un ordine">+</button></div></div><p class="count-note">Un ordine = un acquisto. «—» significa non ancora registrato. <button id="purchaseZero" class="outline" style="min-height:31px;padding:5px 9px;margin-left:5px">Nessun ordine oggi</button> <button id="purchaseClear" class="outline" style="min-height:31px;padding:5px 9px">Azzera dato</button></p></div>
-<h2>La mia giornata</h2><div class="panel"><div class="row between"><span id="inout" class="status">Uscita — · Rientro —</span><span class="hint">07:00–23:00</span></div><div class="timeline" id="timeline"></div><div class="ticks"><span>07</span><span>11</span><span>15</span><span>19</span><span>23</span></div><div class="legend" id="legend"></div><div class="duration-chart"><h3>Tempo dedicato alle attività</h3><p class="hint">Le barre mostrano le durate registrate anche senza orario di inizio.</p><div id="durationBars" aria-live="polite"></div></div><div class="log-heading">Registro cronologico</div><p class="log-subtitle">Prima le attività con orario, poi quelle senza. Puoi modificarle o eliminarle.</p><div id="events"></div></div>
+<h2>La mia giornata</h2><div class="panel"><div class="row between"><span id="inout" class="status">Uscita — · Rientro —</span><span class="hint">04:00–24:00</span></div><div class="timeline" id="timeline"></div><div class="ticks"><span>04</span><span>08</span><span>12</span><span>16</span><span>20</span><span>24</span></div><div class="legend" id="legend"></div><div class="duration-chart"><h3>Tempo dedicato alle attività</h3><p class="hint">Le barre mostrano le durate registrate anche senza orario di inizio.</p><div id="durationBars" aria-live="polite"></div></div><div class="log-heading">Registro cronologico</div><p class="log-subtitle">Prima le attività con orario, poi quelle senza. Puoi modificarle o eliminarle.</p><div id="events"></div></div>
 <h2>Registra attività</h2><p class="section-intro">Puoi compilare la giornata anche tutta insieme, la sera. I timer sono facoltativi.</p><button id="manualBtn" class="quick-add">＋ Aggiungi attività</button><div class="secondary-actions"><button id="leave">↗ Segna uscita</button><button id="return">↙ Segna rientro</button></div><details class="timer-details"><summary>Usa un timer (facoltativo)</summary><p class="hint">Avvia un timer solo quando ti è davvero utile.</p><div class="actions"><button data-start="lettura">◫ Lettura</button><button data-start="lezioni">◈ Lezioni</button><button data-start="sport">◉ Sport</button><button data-start="gaming">▣ Gaming</button><button data-start="progetti">▤ Progetti</button><button data-start="preparazione">▧ Prep. lezioni</button><button data-start="famiglia">♡ Famiglia</button><button data-start="cucina">◷ Preparare da mangiare</button><button data-start="faccende">▦ Faccende</button></div></details>
 <div id="timerPanel" class="panel" hidden><h3 id="timerTitle">Timer</h3><p id="timerText" style="font-size:28px;font-weight:750;margin:5px 0 15px">00:00</p><div class="row"><button class="primary" id="stopTimer">Termina e salva</button><button class="outline" id="cancelTimer">Annulla</button></div><p class="hint">Il timer si basa sull'ora di inizio, anche se chiudi la pagina. Per sicurezza registra la sessione appena terminata.</p></div>
-<div class="panel"><h3>Tempo su Amazon · inserimento manuale</h3><label for="amazon">Amazon (minuti)</label><input id="amazon" type="number" min="0" step="1" placeholder="—" style="max-width:210px"><p class="hint">Registra il tempo che puoi identificare con attendibilità, compreso l'eventuale utilizzo dal browser. «—» significa dato non registrato, 0 significa zero confermato.</p><button id="saveUsage" class="primary">Salva Amazon</button><span id="usageMsg" class="hint" aria-live="polite"></span></div>
-<div class="panel"><h3>Orari di uscita e rientro</h3><div class="formgrid"><div><label for="leaveAt">Uscita</label><input id="leaveAt" type="time"></div><div><label for="returnAt">Rientro</label><input id="returnAt" type="time"></div></div><p class="hint">I pulsanti registrano l'ora attuale; qui puoi correggere o cancellare gli orari.</p><button class="primary" id="saveInout">Salva orari</button></div>
+
+<div class="panel"><h3>Orari di uscita e rientro</h3><div class="formgrid"><div><label for="leaveAt">Uscita</label><input id="leaveAt" type="time"></div><div><label for="returnAt">Rientro</label><input id="returnAt" type="time"></div></div><p class="hint">Puoi correggere o eliminare un orario inserito per errore. Se non sei uscito, seleziona «Sono rimasto a casa».</p>
+<div class="row"><button class="primary" id="saveInout">Salva orari</button><button id="clearLeave" class="outline small-button" type="button">Cancella uscita</button><button id="clearReturn" class="outline small-button" type="button">Cancella rientro</button></div>
+<div class="row" style="margin-top:10px"><button id="stayedHome" class="outline" type="button">Oggi sono rimasto a casa</button><button id="clearHomeStatus" class="outline small-button" type="button">Stato non registrato</button></div><p id="homeStatusLabel" class="home-state"></p></div>
 </section>
 <section id="weekTab" hidden><div class="datebar"><strong>Gli ultimi sette giorni</strong><span id="weekRange" class="muted"></span></div><p class="hint">Riepilogo dei sette giorni fino alla data selezionata nella pagina Oggi. Le medie escludono i giorni senza dato.</p><div class="weekstats" id="weekStats"></div><h2>Il quadro settimanale</h2><div id="weekDays" class="panel"></div><h2>Un solo esperimento</h2><div class="panel"><label for="experiment">Una piccola scelta per i prossimi sette giorni</label><select id="experiment"><option value="">Non ancora scelto</option><option value="15 minuti di lettura dopo il rientro">15 minuti di lettura dopo il rientro</option><option value="Aprire il telefono solo dopo colazione">Aprire il telefono solo dopo colazione</option><option value="10 minuti su Field Notes la sera">10 minuti su Field Notes la sera</option></select><p class="hint">Nessun punteggio e nessuna notifica. Una sola prova alla volta.</p></div></section>
 <section class="foot"><h2>Proteggi le registrazioni</h2><p class="hint">I dati sono salvati localmente in questo browser. Se cancelli i dati del sito o apri il file da un altro indirizzo, potrebbero non essere disponibili. Prima di aggiornare il sito, esporta un backup dall’iPhone. Esportare dal Mac non trasferisce le registrazioni salvate sul telefono. Questa versione non importa automaticamente il tempo Amazon, le sveglie o gli ordini Amazon. Le notifiche sono gestite separatamente da Comandi Rapidi.</p><div class="row"><button class="outline" id="exportData">Esporta backup JSON</button><button class="outline" id="importBtn">Importa backup</button><input id="importFile" type="file" accept="application/json,.json" hidden></div></section>
@@ -83,7 +114,7 @@
 <script>
 (()=>{'use strict';
 const KEY='analogica.v1', TIMER='analogica.timer.v1';const colors={lettura:'#965ce8',lezioni:'#4295eb',sport:'#36b76d',gaming:'#e86d76',progetti:'#f0bd55',preparazione:'#7276c4',famiglia:'#ce9763',cucina:'#db9950',faccende:'#5b9a99'};const names={lettura:'Lettura',lezioni:'Lezioni',sport:'Sport',gaming:'Gaming',progetti:'Progetti',preparazione:'Prep. lezioni',famiglia:'Famiglia',cucina:'Preparare da mangiare',faccende:'Faccende domestiche'};const $=id=>document.getElementById(id);let db={days:{},experiment:''},active=null,editId=null,calendarMonth=null;try{let x=JSON.parse(localStorage.getItem(KEY)||'null');if(x&&x.days)db=x}catch(e){}try{active=JSON.parse(localStorage.getItem(TIMER)||'null')}catch(e){};
-const isoDate=(d=new Date())=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;const monthDate=key=>new Date(Number(key.slice(0,4)),Number(key.slice(5,7))-1,1);const hasRecordedData=d=>!!d&&(d.alarmAt!=null||d.wokeAt!=null||d.snoozeCount!=null||d.phone!=null||d.amazon!=null||d.purchases!=null||!!d.leave||!!d.return||((d.activities||[]).length>0));
+const isoDate=(d=new Date())=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;const monthDate=key=>new Date(Number(key.slice(0,4)),Number(key.slice(5,7))-1,1);const hasRecordedData=d=>!!d&&(d.alarmAt!=null||d.wokeAt!=null||d.snoozeCount!=null||d.phone!=null||d.amazon!=null||d.purchases!=null||!!d.leave||!!d.return||d.homeStatus==='home'||((d.activities||[]).length>0));
 function renderCalendar(){
  const selected=$('day').value;
  if(!calendarMonth)calendarMonth=monthDate(selected);
@@ -113,8 +144,8 @@ $('calendarNext').onclick=()=>{calendarMonth=new Date(calendarMonth.getFullYear(
 $('calendarGrid').onclick=e=>{const b=e.target.closest('[data-calendar-day]');if(!b)return;$('day').value=b.dataset.calendarDay;render()};
 $('day').value=isoDate();const dayObj=()=>db.days[$('day').value]||(db.days[$('day').value]={phone:null,amazon:null,purchases:null,leave:null,return:null,activities:[]});const save=()=>localStorage.setItem(KEY,JSON.stringify(db));const fmt=v=>v===null||v===undefined?'—':v>=60?`${Math.floor(v/60)} h ${String(v%60).padStart(2,'0')} min`:`${v} min`;const todayDate=()=>$('day').value;const time=(d=new Date())=>`${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;const mins=t=>t?Number(t.slice(0,2))*60+Number(t.slice(3)):null;const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function render(){let d=dayObj(),sums={};renderCalendar();renderMissing(d);for(let k of Object.keys(names)){let a=d.activities.filter(x=>x.kind===k);sums[k]=a.length?a.reduce((s,x)=>s+x.duration,0):null}const card=(name,value,sub='',big=false)=>`<div class="metric ${big?'big':''}"><div class="name">${name}</div><div class="value">${fmt(value)}</div>${sub?`<div class="sub">${sub}</div>`:''}</div>`; $('metrics').innerHTML=card('Amazon · tempo',d.amazon,'Minuti registrati',true)+card('Lettura',sums.lettura)+card('Lezioni',sums.lezioni)+card('Sport',sums.sport)+card('Gaming',sums.gaming)+card('Progetti',sums.progetti)+card('Preparazione lezioni',sums.preparazione);
-renderDurations(sums);$('purchaseValue').textContent=d.purchases??'—';$('inout').textContent=`Uscita ${d.leave||'—'} · Rientro ${d.return||'—'}`;$('leaveAt').value=d.leave||'';$('returnAt').value=d.return||'';$('amazon').value=d.amazon??'';renderWake(d);
-let bar=$('timeline');bar.innerHTML='';if(d.leave&&d.return){let a=mins(d.leave),b=mins(d.return);if(b>a){let el=document.createElement('div');el.className='seg';el.style.cssText=`left:${Math.max(0,(a-420)/960*100)}%;width:${Math.max(0,(Math.min(1380,b)-Math.max(420,a))/960*100)}%;background:#bcbcbc`;bar.appendChild(el)}}for(let a of d.activities){if(!a.start)continue;let start=mins(a.start),end=start+a.duration;let l=Math.max(420,start),r=Math.min(1380,end);if(r<=l)continue;let el=document.createElement('div');el.className='seg';el.style.left=((l-420)/960*100)+'%';el.style.width=((r-l)/960*100)+'%';el.style.background=colors[a.kind];bar.appendChild(el)}$('legend').innerHTML=Object.keys(names).map(k=>`<span><i class="swatch" style="background:${colors[k]}"></i>${names[k]}</span>`).join('');const ordered=[...d.activities].sort((a,b)=>{if(!!a.start!==!!b.start)return a.start?-1:1;if(a.start&&b.start)return a.start.localeCompare(b.start);return 0});
+renderDurations(sums);$('purchaseValue').textContent=d.purchases??'—';$('inout').textContent=d.homeStatus==='home'?'Oggi sono rimasto a casa':`Uscita ${d.leave||'—'} · Rientro ${d.return||'—'}`;$('leaveAt').value=d.leave||'';$('returnAt').value=d.return||'';$('homeStatusLabel').textContent=d.homeStatus==='home'?'✓ Giornata trascorsa a casa':(d.leave||d.return?'Orari di uscita e rientro registrati':'Uscita e rientro non registrati');$('amazon').value=d.amazon??'';$('amazonSavedSummary').textContent=d.amazon==null?'Tempo Amazon: non registrato.':'Tempo Amazon salvato: '+fmt(d.amazon)+'.';$('purchasesConfirmed').textContent=d.purchasesConfirmed===true&&d.purchases!=null?'Ordini confermati: '+d.purchases+'.':'';renderWake(d);
+let bar=$('timeline');bar.innerHTML='';const chartStart=240,chartEnd=1440,chartMinutes=chartEnd-chartStart;if(d.leave&&d.return){let a=mins(d.leave),b=mins(d.return);if(b>a){let el=document.createElement('div');el.className='seg';el.style.cssText=`left:${Math.max(0,(a-chartStart)/chartMinutes*100)}%;width:${Math.max(0,(Math.min(chartEnd,b)-Math.max(chartStart,a))/chartMinutes*100)}%;background:#bcbcbc`;bar.appendChild(el)}}for(let a of d.activities){if(!a.start)continue;let start=mins(a.start),end=start+a.duration;let l=Math.max(chartStart,start),r=Math.min(chartEnd,end);if(r<=l)continue;let el=document.createElement('div');el.className='seg';el.style.left=((l-chartStart)/chartMinutes*100)+'%';el.style.width=((r-l)/chartMinutes*100)+'%';el.style.background=colors[a.kind];bar.appendChild(el)}$('legend').innerHTML=Object.keys(names).map(k=>`<span><i class="swatch" style="background:${colors[k]}"></i>${names[k]}</span>`).join('');const ordered=[...d.activities].sort((a,b)=>{if(!!a.start!==!!b.start)return a.start?-1:1;if(a.start&&b.start)return a.start.localeCompare(b.start);return 0});
 $('events').innerHTML=ordered.length?ordered.map(a=>`<div class="event"><div class="event-main"><strong>${escape(names[a.kind]||a.kind)}${a.sportType?' · '+escape(a.sportType):''}</strong><small class="event-meta">${a.start?escape(a.start)+' · '+(mins(a.start)+a.duration<1440?String(Math.floor((mins(a.start)+a.duration)/60)).padStart(2,'0')+':'+String((mins(a.start)+a.duration)%60).padStart(2,'0')+' · ':''):'Orario non registrato · '}${fmt(a.duration)}</small></div><div class="event-actions"><button data-edit="${escape(a.id)}">Modifica</button><button data-delete="${escape(a.id)}">Elimina</button></div></div>`).join(''):'<div class="empty">Nessuna attività registrata.</div>';
 $('timerPanel').hidden=!active; if(active){$('timerTitle').textContent='Timer · '+names[active.kind]+(active.sportType?' · '+active.sportType:'');tick()}$('experiment').value=db.experiment||'';renderWeek()}
 function renderDurations(sums){
@@ -129,16 +160,41 @@ function renderDurations(sums){
  }).join('');
 }
 function tick(){if(!active)return;let secs=Math.max(0,Math.floor((Date.now()-active.started)/1000));$('timerText').textContent=String(Math.floor(secs/3600)).padStart(2,'0')+':'+String(Math.floor(secs/60)%60).padStart(2,'0')+':'+String(secs%60).padStart(2,'0')};setInterval(tick,1000);
-function changePurchase(action){let d=dayObj();if(action==='clear')d.purchases=null;else if(action==='zero')d.purchases=0;else if(action==='plus')d.purchases=(d.purchases??0)+1;else if(action==='minus')d.purchases=Math.max(0,(d.purchases??0)-1);save();render()};$('purchasePlus').onclick=()=>changePurchase('plus');$('purchaseMinus').onclick=()=>changePurchase('minus');$('purchaseZero').onclick=()=>changePurchase('zero');$('purchaseClear').onclick=()=>changePurchase('clear');
+function showAmazonFlow(){ $('amazonFlow').hidden=false; $('usageMsg').textContent=''; }
+function changePurchase(action){
+ let d=dayObj();
+ if(action==='clear'){d.purchases=null;d.purchasesConfirmed=false;}
+ else if(action==='zero'){d.purchases=0;d.purchasesConfirmed=true;}
+ else if(action==='plus'){d.purchases=(d.purchases??0)+1;d.purchasesConfirmed=false;}
+ else if(action==='minus'){d.purchases=Math.max(0,(d.purchases??0)-1);d.purchasesConfirmed=false;}
+ save();render();
+ if(action==='zero')showAmazonFlow();
+ if(action==='clear')$('amazonFlow').hidden=true;
+}
+$('purchasePlus').onclick=()=>changePurchase('plus');
+$('purchaseMinus').onclick=()=>changePurchase('minus');
+$('purchaseZero').onclick=()=>changePurchase('zero');
+$('purchaseClear').onclick=()=>changePurchase('clear');
+$('confirmPurchases').onclick=()=>{
+ let d=dayObj();if(d.purchases==null){alert('Prima indica il numero di ordini o scegli Nessun ordine.');return;}
+ d.purchasesConfirmed=true;save();render();showAmazonFlow();
+};
+$('editAmazonTime').onclick=showAmazonFlow;
+$('skipAmazon').onclick=()=>{$('amazonFlow').hidden=true;};
 $('saveUsage').onclick=()=>{
  let raw=$('amazon').value.trim(),value=raw===''?null:Number(raw);
  if(value!==null&&(!Number.isInteger(value)||value<0)){alert('Inserisci minuti interi non negativi.');return;}
- dayObj().amazon=value;save();render();$('usageMsg').textContent=' Salvato.';
+ dayObj().amazon=value;save();render();$('amazonFlow').hidden=true;
 };
 function renderWake(d){
  $('alarmAt').value=d.alarmAt||'';
  $('wokeAt').value=d.wokeAt||'';
  $('snoozeCount').value=d.snoozeCount??'';
+ const indicator=$('snoozeIndicator');
+ indicator.className='snooze-indicator';
+ if(d.snoozeCount===0){indicator.classList.add('good');indicator.textContent='✓ Nessuno snooze';}
+ else if(Number.isInteger(d.snoozeCount)&&d.snoozeCount>0){indicator.classList.add('bad');indicator.textContent='✕ '+d.snoozeCount+' snooze';}
+ else indicator.textContent='● Snooze non registrato';
  let out=[];
  if(d.alarmAt)out.push('Sveglia '+d.alarmAt);
  if(d.wokeAt)out.push('Alzata '+d.wokeAt);
@@ -160,7 +216,23 @@ $('wokeNow').onclick=()=>{
  if(todayDate()!==isoDate()){alert('Per un altro giorno inserisci manualmente l’ora di alzata.');return;}
  $('wokeAt').value=time();
 };
-$('leave').onclick=()=>setEvent('leave');$('return').onclick=()=>setEvent('return');function setEvent(k){if(todayDate()!==isoDate()&&!confirm('Hai selezionato una data diversa da oggi. Registrare comunque l’ora attuale?'))return;dayObj()[k]=time();save();render()};$('saveInout').onclick=()=>{let d=dayObj();d.leave=$('leaveAt').value||null;d.return=$('returnAt').value||null;save();render()};
+$('leave').onclick=()=>setEvent('leave');$('return').onclick=()=>setEvent('return');
+function setEvent(k){
+ if(todayDate()!==isoDate()&&!confirm('Hai selezionato una data diversa da oggi. Registrare comunque l’ora attuale?'))return;
+ let d=dayObj();d[k]=time();d.homeStatus=null;save();render();
+}
+$('saveInout').onclick=()=>{
+ let d=dayObj();d.leave=$('leaveAt').value||null;d.return=$('returnAt').value||null;
+ if(d.leave||d.return)d.homeStatus=null;
+ save();render();
+};
+$('clearLeave').onclick=()=>{let d=dayObj();d.leave=null;save();render();};
+$('clearReturn').onclick=()=>{let d=dayObj();d.return=null;save();render();};
+$('stayedHome').onclick=()=>{
+ let d=dayObj();if((d.leave||d.return)&&!confirm('Impostare giorno trascorso a casa? Cancellerà gli orari di uscita e rientro.'))return;
+ d.leave=null;d.return=null;d.homeStatus='home';save();render();
+};
+$('clearHomeStatus').onclick=()=>{dayObj().homeStatus=null;save();render();};
 function openModal(k='lettura',a=null){editId=a?.id||null;$('kind').value=a?.kind||k;$('duration').value=a?.duration??'';$('startAt').value=a?.start||'';$('sportType').value=a?.sportType||'Corsa';$('sportArea').style.display=$('kind').value==='sport'?'block':'none';$('autoTimeHelp').textContent='Inserisci prima la durata. Se hai appena terminato l’attività, calcoleremo l’inizio dall’ora attuale, senza avviare il timer.';$('activityDialog').showModal()};$('manualBtn').onclick=()=>openModal();
 $('justFinished').onclick=()=>{
   if($('day').value!==isoDate()){
@@ -179,9 +251,9 @@ $('justFinished').onclick=()=>{
 document.querySelectorAll('[data-start]').forEach(b=>b.onclick=()=>{if(active){alert('C’è già un timer attivo. Termina o annulla quello precedente.');return}let kind=b.dataset.start;let sportType=kind==='sport'?prompt('Sport: scrivi Corsa, Camminata o Hike','Camminata'):null;if(kind==='sport'){if(sportType===null)return;sportType=['Corsa','Camminata','Hike'].find(x=>x.toLowerCase()===sportType.trim().toLowerCase());if(!sportType){alert('Scegli Corsa, Camminata o Hike.');return}}active={kind,sportType,started:Date.now(),date:isoDate(),startTime:time()};localStorage.setItem(TIMER,JSON.stringify(active));render()});$('stopTimer').onclick=()=>{if(!active)return;let a=active;let duration=Math.max(0,Math.round((Date.now()-a.started)/60000));if(a.date!==isoDate()) {alert('Il timer attraversa la mezzanotte: registra manualmente le due parti.');return}let d=db.days[a.date]||(db.days[a.date]={phone:null,amazon:null,purchases:null,leave:null,return:null,activities:[]});d.activities.push({id:`${Date.now()}-${Math.random()}`,kind:a.kind,sportType:a.sportType,duration,start:a.startTime});active=null;localStorage.removeItem(TIMER);save();render()};$('cancelTimer').onclick=()=>{if(confirm('Annullare il timer senza salvare?')){active=null;localStorage.removeItem(TIMER);render()}};
 $('day').onchange=()=>{calendarMonth=monthDate($('day').value);render()};function switchTab(tab){$('todayTab').hidden=tab!=='today';$('weekTab').hidden=tab!=='week';$('todayBtn').classList.toggle('active',tab==='today');$('weekBtn').classList.toggle('active',tab==='week');render()}$('todayBtn').onclick=()=>switchTab('today');$('weekBtn').onclick=()=>switchTab('week');$('experiment').onchange=e=>{db.experiment=e.target.value;save()};
 function renderWeek(){let base=new Date(todayDate()+'T12:00:00'),days=[];for(let i=6;i>=0;i--){let t=new Date(base);t.setDate(t.getDate()-i);let key=isoDate(t);days.push({key,d:db.days[key]})}let keys=['amazon','purchases',...Object.keys(names)];let stats={};for(let k of keys){let arr=days.map(({d})=>{if(!d)return null;if(k==='amazon'||k==='purchases')return d[k];let a=d.activities.filter(x=>x.kind===k);return a.length?a.reduce((s,x)=>s+x.duration,0):null}).filter(x=>x!==null&&x!==undefined);stats[k]={count:arr.length,sum:arr.reduce((a,b)=>a+b,0),average:arr.length?Math.round(arr.reduce((a,b)=>a+b,0)/arr.length):null}}$('weekRange').textContent=`${days[0].key.slice(5)} – ${days[6].key.slice(5)}`;$('weekStats').innerHTML=keys.map(k=>`<div class="metric"><div class="name">${k==='amazon'?'Amazon · media':k==='purchases'?'Ordini Amazon · totale':names[k]+' · totale'}</div><div class="value">${k==='purchases'?(stats[k].count?stats[k].sum+' ordini':'—'):fmt(k==='amazon'?stats[k].average:stats[k].count?stats[k].sum:null)}</div><div class="sub">${stats[k].count}/7 giorni registrati</div></div>`).join('');const wakes=days.filter(({d})=>d&&d.snoozeCount!==null&&d.snoozeCount!==undefined).map(({d})=>d.snoozeCount);
- const snoozeTotal=wakes.reduce((a,b)=>a+b,0);
+ const snoozeTotal=wakes.reduce((a,b)=>a+b,0);const noSnooze=wakes.filter(x=>x===0).length;
  const wakeDays=days.filter(({d})=>d&&d.alarmAt&&d.wokeAt).map(({d})=>{let n=mins(d.wokeAt)-mins(d.alarmAt);if(n<0)n+=1440;return n<=240?n:null}).filter(x=>x!==null);
- $('weekStats').innerHTML+=`<div class="metric"><div class="name">Snooze · totale</div><div class="value">${wakes.length?snoozeTotal:'—'}</div><div class="sub">${wakes.length}/7 giorni registrati</div></div><div class="metric"><div class="name">Dalla sveglia all'alzata · media</div><div class="value">${wakeDays.length?fmt(Math.round(wakeDays.reduce((a,b)=>a+b,0)/wakeDays.length)):'—'}</div><div class="sub">${wakeDays.length}/7 giorni con orari</div></div>`;
+ $('weekStats').innerHTML+=`<div class="metric"><div class="name">Snooze · totale</div><div class="value">${wakes.length?snoozeTotal:'—'}</div><div class="sub">${wakes.length}/7 giorni registrati · ${noSnooze} senza snooze</div></div><div class="metric"><div class="name">Dalla sveglia all'alzata · media</div><div class="value">${wakeDays.length?fmt(Math.round(wakeDays.reduce((a,b)=>a+b,0)/wakeDays.length)):'—'}</div><div class="sub">${wakeDays.length}/7 giorni con orari</div></div>`;
  $('weekDays').innerHTML=days.map(({key,d})=>`<div class="weekrow"><span>${key.slice(5)}</span><span>${d?.amazon==null?'Amazon —':'Amazon '+fmt(d.amazon)} · ${d?.activities?.length||0} attività</span></div>`).join('')+`<p class="hint">Le durate senza orario contribuiscono ai totali, ma non alla timeline. Amazon è un dato giornaliero, non una fascia oraria.</p>`}
 $('exportData').onclick=()=>{let blob=new Blob([JSON.stringify({version:2,exportedAt:new Date().toISOString(),data:db},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='giornata-analogica-backup-'+isoDate()+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000)};$('importBtn').onclick=()=>$('importFile').click();$('importFile').onchange=async e=>{let f=e.target.files?.[0];if(!f)return;try{let obj=JSON.parse(await f.text());if(![1,2].includes(obj.version)||!obj.data||typeof obj.data.days!=='object')throw Error('Formato non valido');if(!confirm('Importare il backup? Sostituirà tutti i dati presenti.'))return;db=obj.data;save();render();alert('Backup importato.')}catch(err){alert('Impossibile importare il file: '+err.message)}finally{e.target.value=''}};
 render();})();
